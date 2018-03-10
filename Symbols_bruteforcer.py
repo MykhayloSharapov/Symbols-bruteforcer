@@ -3,7 +3,7 @@
 
 # there are three kind of command: add('+'), minus ('-') and concatenate ('c')
 # number of their combination equals
-# three powered by the number of positions available
+# three raised to the power of positions available
 
 
 # n = number of positions available
@@ -39,42 +39,19 @@ while i <combinations(n-1):
 
 numbers = [1,2,3,4,5,6,7,8,9]
 
-def concatenate (x,y):
-    return int(str(x)+str(y))
-
 d= []
 
 for line in cl:
     a = list (line)
-    zipped = []
+    zipped = ''
     i = 0
     while i <len(a):
-        zipped.append(numbers[i])
-        zipped.append(a[i])
+        zipped+=str(numbers[i])
+        if a[i] != 'c':
+            zipped+=str(a[i])
         i+=1
-    zipped.append(numbers[-1])
-    while 'c' in zipped:
-        for index, c in enumerate(zipped): 
-            if c =='c':
-                b = concatenate(zipped[index-1],zipped[index+1])
-                zipped[index-1]=b
-                zipped.pop(index)
-                zipped.pop(index)
-    while '-' in zipped:
-        for index, c in enumerate (zipped):
-            if c =='-':
-                b = zipped[index-1]- zipped[index+1]
-                zipped[index-1]=b
-                zipped.pop(index)
-                zipped.pop(index)
-    while '+' in zipped:
-        for index, c in enumerate (zipped):
-            if c =='+':
-                b = zipped[index-1]+zipped[index+1]
-                zipped[index-1]=b
-                zipped.pop(index)
-                zipped.pop(index)
-    if zipped[0]==100: 
+    zipped+=str(numbers[-1])
+    if eval(zipped)==100: 
         d.append(line)
 
 print (d)
